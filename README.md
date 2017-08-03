@@ -1,2 +1,2 @@
 # DS-Impl
-Python-DataStructuresImplementation
+All Python Data Structures are implemented.
