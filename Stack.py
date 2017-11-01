@@ -1,5 +1,5 @@
 # STACK
-
+#using list
 class Stack:
     def __init__(self):
         self.items = []
@@ -43,3 +43,32 @@ for ch in str:  # to go through string
 while not x.isEmpty():  # to go through stack
     rev = rev + x.pop()
 print("reversed string is: ", rev)
+
+#using LL
+class Node:
+	def __init__(self,val):
+		self.data=val
+		self.next=None
+
+class Stack:
+	def __init__(self):
+		self.front=None
+	def push(self,val):
+		newnode=Node(val)
+		newnode.next=self.front
+		self.front=newnode
+	def pop(self):
+		temp=self.front
+		self.front=self.front.next
+		return temp.data
+	def top(self):
+		return self.front.data
+	def isEmpty(self):
+		return self.front==None
+
+s=Stack()
+s.push(10)
+s.push(20)
+print(s.pop())
+print(s.top())
+print(s.isEmpty())
