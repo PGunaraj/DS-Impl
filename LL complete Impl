@@ -73,12 +73,33 @@ class LL:
 	def deleteAtMiddle(self):
 		pos=(self.size()//2)+1
 		self.deleteAtPos(pos)
+	def find(self,v):
+		current=self.head
+		found=False
+		while current!=None:
+			if current.val==v:
+				found=True
+				break
+			current=current.next
+		return found
+	def findAtPos(self,pos):
+		current=self.head
+		c=1
+		found=False
+		while current!=None:
+			if c==pos:
+				found=True
+				break
+			c+=1
+			current=current.next
+		return found
 
 l=LL()
 l.insertAtStart(2)
 l.insertAtStart(1)
 l.insertAtEnd(4)
 l.insertAtPos(3,3)
+print(l.findAtPos(2))
 l.printLL()
 l.deleteAtPos(3)
 l.deleteAtEnd()
@@ -89,3 +110,4 @@ l.size()
 l.insertAtMiddle(3)
 l.printLL()
 l.deleteAtMiddle()
+print(l.find(3))
