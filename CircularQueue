@@ -1,0 +1,80 @@
+#Array Implementation
+
+class CircularQueue:
+    def __init__(self,size):
+        self.size=size
+        self.queue=[0 for i in range(0,size)]
+        self.front=-1
+        self.rear=-1
+    
+    def size_of_queue(self):
+    	if (self.rear>=self.front):
+    		print("size is",((self.rear-self.front)+1))
+    	else:
+    		print("size is",((self.size-self.front)+self.rear+1))
+    
+    def display_queue(self):
+    	if self.front==-1:
+    		print(*self.queue)
+    		print("QUEUE EMPTY")
+    	elif self.rear>=self.front:
+    		for i in range(self.front,self.rear+1):
+    			print(self.queue[i], end=" ")
+    		print()
+    	else:
+    		for i in range(self.front,self.size):
+    			print(self.queue[i],end=" ")
+    		for i in range(0,self.rear+1):
+    			print(self.queue[i],end=" ")
+    		print()
+    	
+    def enqueue(self,val):
+        if ((self.rear+1)%self.size == self.front):
+            print("QUEUE FULL, can't insert")
+        elif (self.front==-1): #queue empty
+            self.front=0
+            self.rear=0
+            self.queue[self.rear]=val
+        else:
+            self.rear=(self.rear+1)%self.size
+            self.queue[self.rear]=val
+            
+    def dequeue(self):
+    	if self.front==-1:
+    		print("QUEUE EMPTY, can't delete")
+    	elif self.front==self.rear: #only 1 value condition
+    		print(self.queue[self.front],"deleted")
+    		self.front=self.rear=-1
+    	else:
+    		print(self.queue[self.front],"deleted")
+    		self.front=(self.front+1)%self.size
+    
+    def display_pointers(self):
+    	print("front",self.front)
+    	print("rear",self.rear)
+            
+c=CircularQueue(5)
+c.display_queue()
+c.enqueue(1)
+c.enqueue(2)
+c.enqueue(3)
+c.enqueue(4)
+c.enqueue(5)
+c.size_of_queue()
+c.display_queue()
+c.enqueue(6)
+c.dequeue()
+c.dequeue()
+c.dequeue()
+c.dequeue()
+c.display_pointers()
+c.enqueue(6)
+c.size_of_queue()
+c.display_queue()
+c.dequeue()
+c.dequeue()
+c.display_pointers()
+c.enqueue(7)
+c.size_of_queue()
+c.display_queue()
+
