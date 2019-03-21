@@ -101,8 +101,27 @@ def addAfterNode(self,val,x):
 				prev.next=new
 			else:
 				print("ERROR!node not found. CAN'T INSERT",val)
-
-
+				
+				
+#delete a node at given position
+def deleteAt(self,pos):
+		if self.head is None:
+			print("ERROR! LL Empty")
+		elif pos==0:
+			self.head=self.head.next
+		else:
+			l=1
+			prev=self.head
+			node=prev.next
+			while node is not None and l!=pos:
+				prev=node
+				node=node.next
+				l+=1
+			if node is None:
+				print("ERROR! No more nodes to traverse")
+			else:
+				prev.next=node.next
+				
 
 class Node:
     def __init__(self, inidata):
