@@ -110,17 +110,15 @@ def deleteAt(self,pos):
 		elif pos==0:
 			self.head=self.head.next
 		else:
-			l=1
+			l=0
 			prev=self.head
-			node=prev.next
-			while node is not None and l!=pos:
-				prev=node
-				node=node.next
+			while prev is not None and l<pos-1:
+				prev=prev.next
 				l+=1
-			if node is None:
+			if prev is None or prev.next is None:
 				print("ERROR! No more nodes to traverse")
 			else:
-				prev.next=node.next
+				prev.next=prev.next.next
 				
 
 class Node:
