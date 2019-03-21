@@ -7,6 +7,7 @@ class LL:
 	def __init__(self):
 		self.head=None
 	
+	#add the node at end each time
 	def add(self,val):
 		new=Node(val)
 		if self.head is None:
@@ -17,6 +18,7 @@ class LL:
 				node=node.next
 			node.next=new
 	
+	#delete the node with given value
 	def delete(self,val):
 		if self.head is None:
 			print("LL EMPTY, can't delete")
@@ -67,6 +69,38 @@ l.size()
 l.delete(1)
 l.display()
 l.size()
+
+
+#AddAtFront
+def addAtFront(self,val):
+		new =Node(val)
+		if self.head is None:
+			self.head=new
+		else:
+			new.next=self.head
+			self.head=new
+
+
+#AddAfterGivenNode
+def addAfterNode(self,val,x):
+		new=Node(val)
+		if x==0:
+			if self.head is None:
+				self.head=new
+			else:
+				new.next=self.head
+				self.head=new
+		elif x is None:
+			print("ERROR!specify node value. CAN'T INSERT",val)
+		else:
+			prev=self.head
+			while prev is not None and prev.data!=x:
+				prev=prev.next
+			if prev is not None and prev.data==x:
+				new.next=prev.next
+				prev.next=new
+			else:
+				print("ERROR!node not found. CAN'T INSERT",val)
 
 
 
