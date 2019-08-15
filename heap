@@ -1,0 +1,58 @@
+class Heap:
+	def __init__(self):
+		self.li=[]
+	def getParent(self,i):
+		return (i-1)//2
+	def left(self,i):
+		return (2*i)+1
+	def right(self,i):
+		return (2*i)+2
+	def insert(self,val):
+		i=len(self.li)
+		self.li.append(val)
+		while i!=0:
+			p = self.getParent(i)
+			if self.li[i] < self.li[p]:
+				self.li[i], self.li[p] = self.li[p], self.li[i]
+			i = p
+		print(self.li)
+	def minHeapify(self,i):
+		ln = len(self.li)
+		while i < ln:
+			l = self.left(i)
+			r = self.right(i)
+			if l > ln-1 and r > ln-1:
+				i = ln
+				break
+			if r > ln-1:
+				if self.li[i] > self.li[l]:
+					self.li[i],self.li[l] = self.li[l],self.li[i]
+				i = ln
+			elif self.li[i] > min(self.li[l],self.li[r]):
+				if self.li[l] < self.li[r]:
+					self.li[i],self.li[l] = self.li[l],self.li[i]
+					i = l
+				else:
+					self.li[i],self.li[r] = self.li[r],self.li[i]
+					i = r
+			else:
+				i = ln
+	def delete(self):
+		self.li[0] = self.li[len(self.li)-1]
+		del self.li[len(self.li)-1]
+		self.minHeapify(0)
+		print(self.li)
+    
+    
+    
+h=Heap()
+h.insert(3)
+h.insert(1)
+h.insert(5)
+h.insert(6)
+h.insert(10)
+h.delete()
+h.delete()
+h.delete()
+h.delete()
+h.delete()
