@@ -1,0 +1,66 @@
+class TrieNode:
+	def __init__(self):
+		#children is a list of alphabet_size
+		self.children = [None]*26
+		#track end of word
+		self.isEndOfWord = False
+
+class Trie:
+	def __init__(self):
+		self.root = self.getNode()
+    
+	#create a trie node
+	def getNode(self):
+		return TrieNode()
+    
+	#to get the index of children that needs to be set
+	def charToIndex(self,ch):
+		return ord(ch)-ord('a')
+    
+	def insert(self,word):
+		#go from root
+		node = self.root
+		n = len(word)
+    
+		#traverse each ch in word
+		for i in range(n):
+			index = self.charToIndex(word[i])
+      
+			#create a trie node for each ch in the word if already not present
+			if not node.children[index]:
+				node.children[index] = self.getNode()
+			node = node.children[index]
+      
+		#for the last ch in word, set the end of word
+		node.isEndOfWord = True
+    
+	def search(self,word):
+		#start from root and go down
+		node = self.root
+		n = len(word)
+    
+		#traverse each ch in word
+		for i in range(n):
+			index = self.charToIndex(word[i])
+      
+			#when a ch is not present as children
+			if not node.children[index]:
+				return False
+			node = node.children[index]
+      
+		return node.isEndOfWord
+	
+  
+  
+  
+t = Trie()
+words = ["the","a","there","anaswe","any","by","their"]
+for word in words:
+	t.insert(word)
+print("searching the: ",t.search("the"))
+print("searching anaswe: ",t.search("anaswe"))
+print("searching answer: ",t.search("answer"))
+print("searching ther: ",t.search("ther"))
+
+
+Reference - https://ideone.com/Qoee70
