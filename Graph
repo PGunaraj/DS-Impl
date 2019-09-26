@@ -1,0 +1,84 @@
+#Adjacency Matrix
+
+class Graph:
+	def __init__(self,v):
+		self.adj = [[0]*v for i in range(v)]
+		self.numOfVer = v
+		self.vertices = {}
+		self.verticesList = [0]*v
+ 
+	def setVertex(self,index,ver):
+		if index >= 0 and index < self.numOfVer:
+			self.vertices[ver] = index
+			self.verticesList[index] = ver
+ 
+	def getVertex(self):
+		return self.verticesList
+ 
+	def setEdge(self,x,y,wt):
+		frm = self.vertices[x]
+		to = self.vertices[y]
+ 
+		self.adj[frm][to] = wt
+		self.adj[to][frm] = wt
+		#print(self.adj)
+ 
+	def getEdge(self):
+		edges = []
+		for i in range(self.numOfVer):
+			for j in range(self.numOfVer):
+				if self.adj[i][j] > 0:
+					edges.append((self.verticesList[i],self.verticesList[j],self.adj[i][j]))
+		return edges
+ 
+	def getMatrix(self):
+		return self.adj
+ 
+g = Graph(5)
+g.setVertex(0,'A')
+g.setVertex(1,'B')
+g.setVertex(2,'C')
+g.setVertex(3,'D')
+g.setVertex(4,'E')
+print("vertices are: ")
+print(g.getVertex())
+g.setEdge('A','B',11)
+g.setEdge('A','E',12)
+g.setEdge('B','C',21)
+g.setEdge('B','D',22)
+g.setEdge('B','E',23)
+g.setEdge('C','D',31)
+g.setEdge('D','E',41)
+print("edges are: ")
+print(g.getEdge())
+print("adjacency matrix is: ")
+print(g.getMatrix())
+
+
+
+
+#Adjacency List
+
+from collections import defaultdict
+class Graph:
+	def __init__(self,v):
+		self.verticesList = defaultdict(list)
+ 
+	def addEdge(self,x,y,wt):
+		self.verticesList[x].append([y,wt])
+		self.verticesList[y].append([x,wt])
+ 
+	def printList(self):
+		for k,v in self.verticesList.items():
+			print(k + ": ", end="")
+			print(v)
+ 
+g = Graph(5)
+g.addEdge('A','B')
+g.addEdge('A','E')
+g.addEdge('B','C')
+g.addEdge('B','D')
+g.addEdge('B','E')
+g.addEdge('C','D')
+g.addEdge('D','E')
+g.printList()
